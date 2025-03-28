@@ -1,39 +1,33 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getAllConversations, Conversation } from "../services/api";
-import CreateConversation from "./CreateConversation";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './ConversationList.css';
+import { Conversation } from '../api/Conversation';
 
-const ConversationList = () => {
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-
-  const fetchConversations = async () => {
-    try {
-      const data = await getAllConversations();
-      setConversations(data);
-    } catch (error) {
-      console.error("Ошибка при получении разговоров:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchConversations();
-  }, []);
-
-  return (
-    <div>
-      <h2>Список разговоров</h2>
-      <CreateConversation onCreated={fetchConversations} />
-      <ul>
-        {conversations.map((conv) => (
-          <li key={conv.id}>
-            <Link to={`/conversation/${conv.id}`}>
-              <strong>{conv.conversation_name}</strong> — {conv.status}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+type Props = {
+    conversations: Conversation[];
 };
 
-export default ConversationList;
+const ConversationsList: React.FC<Props> = ({ conversations }) => {
+    if (conversations.length === 0) {
+        return <p>Совещаний пока нет.</p>;
+    }
+
+    return (
+        <div className="conversations-list">
+            {conversations.map((conv) => (
+                <Link
+                    to={`/conversations/${conv.id}`}
+                    key={conv.id}
+                    className="conversation-link"
+                >
+                    <div className="conversation-item">
+                        <h3 className="conversation-title">{conv.conversation_name}</h3>
+                        <small className="conversation-id">ID: {conv.id}</small>
+                    </div>
+                </Link>
+            ))}
+        </div>
+    );
+};
+
+export default ConversationsList;
