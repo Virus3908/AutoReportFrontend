@@ -18,6 +18,17 @@
     border-top-right-radius: 2%;
 }
 
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
 .add-button {
     float: right;
     padding: 8px 12px;

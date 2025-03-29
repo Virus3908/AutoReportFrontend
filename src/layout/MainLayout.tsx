@@ -7,7 +7,7 @@ const MainLayout = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
     return (
-        <div className=''>
+        <div className='main-layout'>
             <header className="main-header">
                 <h2 style={{ display: 'inline-block' }}>Моё автопротоколирование</h2>
                 <button
@@ -23,7 +23,7 @@ const MainLayout = () => {
             </main>
 
             <footer className="main-footer">
-                <small>© 2025 Автопротокол</small>
+                <small>© 2025 Сбербанк</small>
             </footer>
 
             <AddConversationModal

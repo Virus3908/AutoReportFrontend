@@ -6,17 +6,27 @@ export type Conversation = {
   file_url: string;
   status: number;
   created_at: string;
-  updated_at: string
+  updated_at: string;
+  created_at_date: Date;
+  updated_at_date: Date;
 };
 
 export const fetchConversations = async (): Promise<Conversation[]> => {
   const response = await axios.get<Conversation[]>(`/api/conversations`);
-  return response.data;
+
+  return response.data.map((conv) => ({
+    ...conv,
+    created_at_date: new Date(conv.created_at),
+    updated_at_date: new Date(conv.updated_at),
+  }));
 };
 
 export const fetchConversationByID = async (id: string): Promise<Conversation> => {
   const response = await axios.get<Conversation>(`/api/conversations/${id}`);
+  response.data.created_at_date = new Date(response.data.created_at)
+  response.data.updated_at_date = new Date(response.data.updated_at)
   return response.data;
+
 };
 
 export const createConversation = async (formData: FormData) => {

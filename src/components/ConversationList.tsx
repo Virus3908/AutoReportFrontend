@@ -22,7 +22,6 @@ const ConversationsList: React.FC<Props> = ({ conversations }) => {
                 >
                     <div className="conversation-item">
                         <h3 className="conversation-title">{conv.conversation_name}</h3>
-                        <small className="conversation-id">ID: {conv.id}</small>
                     </div>
                 </Link>
             ))}
@@ -31,3 +30,4 @@ const ConversationsList: React.FC<Props> = ({ conversations }) => {
 };
 
 export default ConversationsList;
+

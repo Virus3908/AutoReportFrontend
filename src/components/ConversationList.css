@@ -16,6 +16,11 @@
     color: #555;
 }
 
+.conversation-created {
+    font-size: 0.85rem;
+    color: #555;
+}
+
 .conversation-link {
     text-decoration: none;
     color: inherit;

@@ -1,0 +1,23 @@
+.conversation-detail {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .conversation-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .conversation-field {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+  
+  .file-link {
+    color: #2196f3;
+    text-decoration: none;
+  }
+  
+  .file-link:hover {
+    color: #1976d2;
+  }
