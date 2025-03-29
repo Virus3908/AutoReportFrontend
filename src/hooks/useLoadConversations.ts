@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchConversations, Conversation } from "../api/Conversation";
+import { fetchConversations, Conversation, deleteConversationByID } from "../api/Conversation";
 
 export const useLoadConversations = () => {
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -35,5 +35,14 @@ export const useLoadConversations = () => {
     };
   }, []);
 
-  return { conversations, loading, error };
+  const deleteConversation = async (id: string) => {
+    try {
+      await deleteConversationByID(id);
+      setConversations((prev) => prev.filter((conv) => conv.id !== id));
+    } catch (err) {
+      console.error('Ошибка при удалении:', err);
+    }
+  };
+
+  return { conversations, loading, error, deleteConversation };
 };

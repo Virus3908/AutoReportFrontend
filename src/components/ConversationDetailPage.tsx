@@ -15,7 +15,7 @@ const ConversationDetailPage: React.FC = () => {
       <h2 className="conversation-title">{conversation.conversation_name}</h2>
       <p className="conversation-field"><strong>ID:</strong> {conversation.id}</p>
       <p className="conversation-field"><strong>Статус:</strong> {conversation.status}</p>
-      <p className="conversation-field"><strong>Создано:</strong> {conversation.created_at_date.toDateString()}</p>
+      <p className="conversation-field"><strong>Создано:</strong> {conversation.created_at}</p>
       <p className="conversation-field">
         <strong>Файл:</strong>{' '}
         <a href={conversation.file_url} target="_blank" rel="noreferrer" className="file-link">

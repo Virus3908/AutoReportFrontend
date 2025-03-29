@@ -5,9 +5,10 @@ import { Conversation } from '../api/Conversation';
 
 type Props = {
     conversations: Conversation[];
+    onDelete: (id: string) => void;
 };
 
-const ConversationsList: React.FC<Props> = ({ conversations }) => {
+const ConversationsList: React.FC<Props> = ({ conversations, onDelete }) => {
     if (conversations.length === 0) {
         return <p>Совещаний пока нет.</p>;
     }
@@ -15,15 +16,18 @@ const ConversationsList: React.FC<Props> = ({ conversations }) => {
     return (
         <div className="conversations-list">
             {conversations.map((conv) => (
-                <Link
-                    to={`/conversations/${conv.id}`}
-                    key={conv.id}
-                    className="conversation-link"
-                >
-                    <div className="conversation-item">
-                        <h3 className="conversation-title">{conv.conversation_name}</h3>
-                    </div>
-                </Link>
+                <div className="conversation-item" key={conv.id}>
+                    <Link to={`/conversations/${conv.id}`} className="conversation-title">
+                        {conv.conversation_name}
+                    </Link>
+                    <button
+                        className="conversation-delete"
+                        onClick={() => onDelete(conv.id)}
+                        title="Удалить совещание"
+                    >
+                        ×
+                    </button>
+                </div>
             ))}
         </div>
     );
