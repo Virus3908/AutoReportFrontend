@@ -1,7 +1,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ConversationsListPage from './pages/ConversationsListPage';
-import ConversationDetailPage from './components/ConversationDetailPage';
+import ConversationDetailPage from './components/ConversationDetail/ConversationDetailPage';
 import MainLayout from './layout/MainLayout';
 
 

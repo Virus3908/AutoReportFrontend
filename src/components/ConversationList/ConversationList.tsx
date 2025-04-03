@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ConversationList.css';
-import { Conversation } from '../api/Conversation';
+import { Conversation } from '../../api/Conversation';
 
 type Props = {
     conversations: Conversation[];

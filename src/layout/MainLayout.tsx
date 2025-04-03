@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import './MainLayout.css'
-import AddConversationModal from '../components/AddConversationModal';
+import AddConversationModal from '../components/AddConversation/AddConversationModal';
 
 const MainLayout = () => {
     const [modalOpen, setModalOpen] = useState(false);

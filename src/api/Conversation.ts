@@ -37,3 +37,4 @@ export async function deleteConversationByID(id: string): Promise<void> {
   const response = await fetch(`/api/conversations/${id}`, { method: 'DELETE' });
   if (!response.ok) throw new Error('Delete failed');
 }
+
