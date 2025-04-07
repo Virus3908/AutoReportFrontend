@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useConversation } from '../../hooks/useConversation';
 import './ConversationDetail.css'
 import ConvertButton from './ConvertButton';
+import DiarizeButton from './DiarizeButton';
 
 const ConversationDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,6 +16,7 @@ const ConversationDetailPage: React.FC = () => {
     <div className="conversation-detail">
       <h2 className="conversation-title">{conversation.conversation_name}</h2>
       <ConvertButton conversationId={conversation.id} />
+      <DiarizeButton conversationId={conversation.id} />
       <p className="conversation-field"><strong>ID:</strong> {conversation.id}</p>
       <p className="conversation-field"><strong>Статус:</strong> {conversation.status}</p>
       <p className="conversation-field"><strong>Создано:</strong> {conversation.created_at}</p>
