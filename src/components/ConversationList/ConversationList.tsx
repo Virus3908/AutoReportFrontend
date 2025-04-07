@@ -9,7 +9,7 @@ type Props = {
 };
 
 const ConversationsList: React.FC<Props> = ({ conversations, onDelete }) => {
-    if (conversations.length === 0) {
+    if (!conversations || conversations.length === 0) {
         return <p>Совещаний пока нет.</p>;
     }
 

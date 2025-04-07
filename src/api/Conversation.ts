@@ -1,5 +1,14 @@
 import axios from 'axios';
 
+export type SegmentDetail = {
+  segment_id: string;
+  start_time: number;
+  end_time: number;
+  speaker: number;
+  transcription_id?: string;
+  transcription?: string;
+};
+
 export type Conversation = {
   id: string;
   conversation_name: string;
@@ -7,6 +16,8 @@ export type Conversation = {
   status: number;
   created_at: string;
   updated_at: string;
+  converted_file_url?: string;
+  segments?: SegmentDetail[];
 };
 
 export const fetchConversations = async (): Promise<Conversation[]> => {
