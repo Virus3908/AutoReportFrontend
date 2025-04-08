@@ -1,7 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useConversation } from '../../hooks/useConversation';
-import './ConversationDetail.css'
-import TranscriptionButton from './TranscriptionButton';
+import ConversationHeader from './ConversationHeader';
+import ConversationInfo from './ConversationInfo';
+import ConversationFiles from './ConversationFiles';
+import ConversationSegments from './ConversationSegments';
+import './ConversationDetail.css';
 
 const ConversationDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,45 +16,22 @@ const ConversationDetailPage: React.FC = () => {
 
   return (
     <div className="conversation-detail">
-      <h2 className="conversation-title">{conversation.conversation_name}</h2>
-      <TranscriptionButton conversationId={conversation.id} />
+      <ConversationHeader
+        title={conversation.conversation_name}
+        conversationId={conversation.id}
+      />
 
-      <p className="conversation-field"><strong>ID:</strong> {conversation.id}</p>
-      <p className="conversation-field"><strong>Статус:</strong> {conversation.status}</p>
+      <ConversationInfo
+        id={conversation.id}
+        status={conversation.status}
+      />
 
-      <p className="conversation-field">
-        <strong>Файл:</strong>{' '}
-        <a href={conversation.file_url} target="_blank" rel="noreferrer" className="file-link">
-          Скачать
-        </a>
-      </p>
+      <ConversationFiles
+        original={conversation.file_url}
+        converted={conversation.converted_file_url}
+      />
 
-      {conversation.converted_file_url && (
-        <p className="conversation-field">
-          <strong>Сконвертированный файл:</strong>{' '}
-          <a href={conversation.converted_file_url} target="_blank" rel="noreferrer" className="file-link">
-            Скачать
-          </a>
-        </p>
-      )}
-
-      {conversation.segments && conversation.segments.length > 0 && (
-        <div className="conversation-segments">
-          <h3>Сегменты:</h3>
-          <ul>
-            {conversation.segments.map(segment => (
-              <li key={segment.segment_id} className="segment">
-                <p><strong>Начало:</strong> {segment.start_time.toFixed(2)} сек</p>
-                <p><strong>Конец:</strong> {segment.end_time.toFixed(2)} сек</p>
-                <p><strong>Спикер:</strong> Speaker {segment.speaker}</p>
-                {segment.transcription && (
-                  <p><strong>Транскрипция:</strong> {segment.transcription}</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <ConversationSegments segments={conversation.segments || []} />
     </div>
   );
 };
