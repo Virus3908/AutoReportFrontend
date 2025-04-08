@@ -19,7 +19,7 @@ const TranscriptionButton: React.FC<Props> = ({ conversationId }) => {
         onClick={handleClick}
         disabled={loading}
       >
-        {loading ? 'Транскрибация...' : 'Транскрибация'}
+        {loading ? 'Создание транскрипции...' : 'Создать транскрипцию'}
       </button>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
