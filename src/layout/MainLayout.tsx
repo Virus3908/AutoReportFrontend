@@ -23,7 +23,7 @@ const MainLayout = () => {
             </main>
 
             <footer className="main-footer">
-                <small>© 2025 Сбербанк</small>
+                <small>© 2025 Автопротоколирование</small>
             </footer>
 
             <AddConversationModal
