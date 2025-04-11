@@ -13,7 +13,7 @@ export type Conversation = {
   id: string;
   conversation_name: string;
   file_url: string;
-  status: number;
+  status: string;
   created_at: string;
   updated_at: string;
   converted_file_url?: string;
@@ -49,3 +49,7 @@ export async function deleteConversationByID(id: string): Promise<void> {
   if (!response.ok) throw new Error('Delete failed');
 }
 
+
+export const updateTranscription = async (transcriptionId: string, text: string): Promise<void> => {
+  await axios.patch(`/api/transcription/update/${transcriptionId}`, { transcription: text });
+};

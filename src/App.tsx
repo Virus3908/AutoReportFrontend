@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ConversationsListPage from './pages/ConversationsListPage';
 import ConversationDetailPage from './components/ConversationDetail/ConversationDetailPage';

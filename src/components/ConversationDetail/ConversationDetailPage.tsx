@@ -22,7 +22,7 @@ const ConversationDetailPage: React.FC = () => {
       />
 
       <ConversationInfo
-        id={conversation.id}
+        // id={conversation.id}
         status={conversation.status}
       />
 
