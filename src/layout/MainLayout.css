@@ -1,11 +1,14 @@
 .main-header {
   background-color: #bfe7ce;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   font-family: Arial, sans-serif;
-  text-align: left;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   border-bottom-left-radius: 2%;
   border-bottom-right-radius: 2%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-footer {
@@ -22,11 +25,17 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
+  margin: 0;    
+  padding: 0;          
+  box-sizing: border-box;
 }
 
 main {
   flex: 1;
   padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .add-button {
@@ -61,13 +70,6 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  width: 100%;
 }
 
 .main-wrapper {

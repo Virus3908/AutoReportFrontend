@@ -1,63 +1,31 @@
-.conversations-list {
+.conversation-item {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.conversation-title {
-    margin: 0;
-    font-size: 1.2rem;
-    font-family: Arial;
-    color: rgb(26, 55, 35);
-}
-
-.conversation-id {
-    font-size: 0.85rem;
-    color: #555;
-}
-
-.conversation-created {
-    font-size: 0.85rem;
-    color: #555;
-}
-
-.conversation-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
+    align-items: center;       
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    min-height: 50px;           
+    font-family: Arial, sans-serif;
+  }
 
 .conversation-item:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
-
-.conversation-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-}
-
 .conversation-title {
-    text-decoration: none;
     font-size: 1.1rem;
     color: #333;
-    text-decoration: none;
     flex: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-/* .conversation-title:hover {
-    text-decoration: underline;
-  } */
 
 .conversation-delete {
     background: none;
@@ -65,10 +33,12 @@
     font-size: 1.3rem;
     color: #888;
     cursor: pointer;
-    margin-left: 12px;
-    transition: color 0.2s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .conversation-delete:hover {
+    background-color: #fbeaea;
     color: #e53935;
 }

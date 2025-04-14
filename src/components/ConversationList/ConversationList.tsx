@@ -16,13 +16,18 @@ const ConversationsList: React.FC<Props> = ({ conversations, onDelete }) => {
     return (
         <div className="conversations-list">
             {conversations.map((conv) => (
-                <div className="conversation-item" key={conv.id}>
-                    <Link to={`/conversations/${conv.id}`} className="conversation-title">
-                        {conv.conversation_name}
-                    </Link>
+                <div
+                    key={conv.id}
+                    className="conversation-item"
+                    onClick={() => window.location.href = `/conversations/${conv.id}`}
+                >
+                    <span className="conversation-title">{conv.conversation_name}</span>
                     <button
                         className="conversation-delete"
-                        onClick={() => onDelete(conv.id)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onDelete(conv.id);
+                        }}
                         title="Удалить совещание"
                     >
                         ×
