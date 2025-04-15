@@ -6,7 +6,7 @@ interface Props {
 }
 
 const MenuButton: React.FC<Props> = ({ onAddClick }) => {
-  const { menuOpen, setMenuOpen, handleNavigate, menuRef } = useMenuButtonLogic(onAddClick);
+  const { menuOpen, setMenuOpen, handleNavigate, menuRef } = useMenuButtonLogic();
 
   return (
     <div className="menu-wrapper" ref={menuRef}>
@@ -16,10 +16,11 @@ const MenuButton: React.FC<Props> = ({ onAddClick }) => {
 
       {menuOpen && (
         <div className="dropdown-menu">
-          <button onClick={() => handleNavigate('/conversations')}>🏠 Главная</button>
+          <button onClick={() => handleNavigate('/conversations')}> Совещания</button>
           <button onClick={() => { onAddClick(); setMenuOpen(false); }}>
-            ➕ Добавить совещание
+            Добавить совещание
           </button>
+          <button onClick={() => handleNavigate('/participants')}>Участники</button>
         </div>
       )}
     </div>

@@ -47,7 +47,7 @@ export const createConversation = async (formData: FormData) => {
 export async function deleteConversationByID(id: string): Promise<void> {
   const response = await fetch(`/api/conversations/${id}`, { method: 'DELETE' });
   if (!response.ok) throw new Error('Delete failed');
-}
+};
 
 
 export const updateTranscription = async (transcriptionId: string, text: string): Promise<void> => {

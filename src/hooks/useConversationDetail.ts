@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Conversation, fetchConversationByID } from '../api/Conversation';
 
-export const useConversation = (id: string | undefined) => {
+export const useConversationDetail = (id: string | undefined) => {
   const [conversation, setConversation] = useState<Conversation | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

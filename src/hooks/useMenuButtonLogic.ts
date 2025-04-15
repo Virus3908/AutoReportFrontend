@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const useMenuButtonLogic = (onAddClick: () => void) => {
+export const useMenuButtonLogic = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     const menuRef = useRef<HTMLDivElement>(null);
