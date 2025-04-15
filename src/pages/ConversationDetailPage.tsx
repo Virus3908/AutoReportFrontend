@@ -1,14 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { useConversation } from '../../hooks/useConversation';
-import ConversationHeader from './ConversationHeader';
-import ConversationInfo from './ConversationInfo';
-import ConversationFiles from './ConversationFiles';
-import ConversationSegments from './ConversationSegments';
-import './ConversationDetail.css';
+import { useConversationDetail } from '../hooks/useConversationDetail';
+import ConversationHeader from '../components/ConversationDetail/ConversationHeader';
+import ConversationInfo from '../components/ConversationDetail/ConversationInfo';
+import ConversationFiles from '../components/ConversationDetail/ConversationFiles';
+import ConversationSegments from '../components/ConversationDetail/ConversationSegments';
+import '../components/ConversationDetail/ConversationDetail.css';
 
 const ConversationDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { conversation, error, loading } = useConversation(id);
+  const { conversation, error, loading } = useConversationDetail(id);
 
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>{error}</div>;
