@@ -1,10 +1,12 @@
 import SegmentTranscript from "./SegmentTranscript";
+import SegmentParticipantSelector from "./SegmentParticipantSelector";
 
 type Segment = {
   segment_id: string;
   start_time: number;
   end_time: number;
   speaker: number;
+  participant_name?: string;
   transcription_id?: string;
   transcription?: string;
 };
@@ -25,9 +27,11 @@ const ConversationSegments: React.FC<Props> = ({ segments }) => {
               <div className="segment-time">
                 {segment.start_time.toFixed(2)} – {segment.end_time.toFixed(2)} сек
               </div>
-              <div className="segment-speaker">
-                Спикер: {segment.speaker}
-              </div>
+              <SegmentParticipantSelector
+                speaker={segment.speaker}
+                participantName={segment.participant_name}
+                segmentId={segment.segment_id}
+              />
             </div>
             <div className="segment-text">
               <SegmentTranscript

@@ -10,6 +10,7 @@ type Props = {
 };
 
 const SegmentTranscript: React.FC<Props> = ({ text = '', id }) => {
+  if (!id || !text) return null;
   const [value, setValue] = useState(text);
   const originalValue = text;
   const { update, loading, success, error, resetSuccess } = useUpdateTranscription();
