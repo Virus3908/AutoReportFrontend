@@ -1,5 +1,5 @@
 import { useLoadParticipants } from "../hooks/useLoadParticipants";
-import ParticipantList from "../components/ParticipantList/ParticipantList";
+import ParticipantList from "../components/Lists/ParticipantList/ParticipantList";
 
 const ParticipantListPage: React.FC = () => {
     const { participants, loading, error, deleteParticipant } = useLoadParticipants();

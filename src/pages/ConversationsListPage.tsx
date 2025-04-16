@@ -1,5 +1,5 @@
 
-import ConversationsList from '../components/ConversationList/ConversationList';
+import ConversationsList from '../components/Lists/ConversationList/ConversationList';
 import { useLoadConversations } from '../hooks/useLoadConversations';
 
 const ConversationsListPage: React.FC = () => {

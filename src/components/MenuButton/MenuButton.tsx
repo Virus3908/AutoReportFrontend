@@ -2,10 +2,11 @@ import { useMenuButtonLogic } from '../../hooks/useMenuButtonLogic';
 import './MenuButton.css';
 
 interface Props {
-  onAddClick: () => void;
+  onAddConversation: () => void;
+  onAddParticipant: () => void;
 }
 
-const MenuButton: React.FC<Props> = ({ onAddClick }) => {
+const MenuButton: React.FC<Props> = ({ onAddConversation, onAddParticipant }) => {
   const { menuOpen, setMenuOpen, handleNavigate, menuRef } = useMenuButtonLogic();
 
   return (
@@ -17,10 +18,13 @@ const MenuButton: React.FC<Props> = ({ onAddClick }) => {
       {menuOpen && (
         <div className="dropdown-menu">
           <button onClick={() => handleNavigate('/conversations')}> Совещания</button>
-          <button onClick={() => { onAddClick(); setMenuOpen(false); }}>
+          <button onClick={() => { onAddConversation(); setMenuOpen(false); }}>
             Добавить совещание
           </button>
           <button onClick={() => handleNavigate('/participants')}>Участники</button>
+          <button onClick={() => { onAddParticipant(); setMenuOpen(false); }}>
+            Добавить участника
+          </button>
         </div>
       )}
     </div>
