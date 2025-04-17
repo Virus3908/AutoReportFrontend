@@ -1,6 +1,6 @@
 import React from 'react';
-import './ParticipantList.css';
-import { Participant } from '../../api/Participant';
+import '../Lists.css';
+import { Participant } from '../../../api/Participant';
 
 type Props = {
     participants: Participant[];
@@ -13,15 +13,18 @@ const ParticipantsList: React.FC<Props> = ({ participants, onDelete }) => {
     }
 
     return (
-        <div className="participants-list">
+        <div className="lists">
             {participants.map((part) => (
                 <div
                     key={part.id}
-                    className="participant-item"
+                    className="lists-item"
                 >
-                    <span className="participant-name">{part.name}</span>
+                    <div className="lists-text">
+                        <span className="lists-title">{part.name}</span>
+                        <span className="lists-subtitle">{part.email}</span>
+                    </div>
                     <button
-                        className="participant-delete"
+                        className="lists-delete"
                         onClick={(e) => {
                             e.stopPropagation();
                             onDelete(part.id);

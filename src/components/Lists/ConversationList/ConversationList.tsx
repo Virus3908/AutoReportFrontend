@@ -1,6 +1,6 @@
 import React from 'react';
-import './ConversationList.css';
-import { Conversation } from '../../api/Conversation';
+import '../Lists.css';
+import { Conversation } from '../../../api/Conversation';
 
 type Props = {
     conversations: Conversation[];
@@ -13,16 +13,16 @@ const ConversationsList: React.FC<Props> = ({ conversations, onDelete }) => {
     }
 
     return (
-        <div className="conversations-list">
+        <div className="lists">
             {conversations.map((conv) => (
                 <div
                     key={conv.id}
-                    className="conversation-item"
+                    className="lists-item"
                     onClick={() => window.location.href = `/conversations/${conv.id}`}
                 >
-                    <span className="conversation-title">{conv.conversation_name}</span>
+                    <span className="lists-title">{conv.conversation_name}</span>
                     <button
-                        className="conversation-delete"
+                        className="lists-delete"
                         onClick={(e) => {
                             e.stopPropagation();
                             onDelete(conv.id);

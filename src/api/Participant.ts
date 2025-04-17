@@ -11,10 +11,13 @@ export const fetchParticipants = async (): Promise<Participant[]> => {
     return response.data;
 };
 
-export const createParticipant = async (formData: FormData) => {
+export const createParticipant = async (data: { name: string; email: string }) => {
     const response = await fetch(`/api/participants`, {
         method: 'POST',
-        body: formData,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
     });
 
     if (!response.ok) {

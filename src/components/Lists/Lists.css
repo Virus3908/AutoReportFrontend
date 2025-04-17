@@ -1,6 +1,6 @@
-.conversation-item {
+.lists-item {
     display: flex;
-    align-items: center;       
+    align-items: center;
     justify-content: space-between;
     padding: 12px;
     border: 1px solid #ddd;
@@ -9,25 +9,26 @@
     background-color: #f9f9f9;
     cursor: pointer;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
-    min-height: 50px;           
+    min-height: 50px;
     font-family: Arial, sans-serif;
-  }
+}
 
-.conversation-item:hover {
+.lists-item:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
-.conversation-title {
-    font-size: 1.1rem;
+.lists {
+    font-size: 1.4rem;
     color: #333;
     flex: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-top: 5px;
 }
 
-.conversation-delete {
+.lists-delete {
     background: none;
     border: none;
     font-size: 1.3rem;
@@ -38,7 +39,18 @@
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.conversation-delete:hover {
+.lists-delete:hover {
     background-color: #fbeaea;
     color: #e53935;
+}
+
+.lists-text {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.lists-subtitle {
+    font-size: 0.9rem;
+    color: #666;
 }
