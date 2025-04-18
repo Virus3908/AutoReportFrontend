@@ -6,6 +6,7 @@ type Segment = {
   start_time: number;
   end_time: number;
   speaker: number;
+  participant_id?: string;
   participant_name?: string;
   transcription_id?: string;
   transcription?: string;
@@ -13,9 +14,10 @@ type Segment = {
 
 type Props = {
   segments: Segment[];
+  conversation_id: string;
 };
 
-const ConversationSegments: React.FC<Props> = ({ segments }) => {
+const ConversationSegments: React.FC<Props> = ({ segments, conversation_id }) => {
   if (segments.length === 0) return null;
 
   return (
@@ -29,8 +31,10 @@ const ConversationSegments: React.FC<Props> = ({ segments }) => {
               </div>
               <SegmentParticipantSelector
                 speaker={segment.speaker}
+                participantID={segment.participant_id}
                 participantName={segment.participant_name}
                 segmentId={segment.segment_id}
+                conversationId={conversation_id}
               />
             </div>
             <div className="segment-text">

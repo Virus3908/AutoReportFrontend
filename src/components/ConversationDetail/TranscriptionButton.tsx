@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranscriptionTask } from '../../hooks/useTranscriptionTask';
+import './ConversationDetail.css';
 
 type Props = {
   conversationId: string;
@@ -13,7 +14,7 @@ const TranscriptionButton: React.FC<Props> = ({ conversationId }) => {
   };
 
   return (
-    <div style={{ marginTop: '1rem' }}>
+    <div>
       <button
         className="btn"
         onClick={handleClick}

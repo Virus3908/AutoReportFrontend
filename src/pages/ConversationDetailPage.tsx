@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useConversationDetail } from '../hooks/useConversationDetail';
 import ConversationHeader from '../components/ConversationDetail/ConversationHeader';
 import ConversationInfo from '../components/ConversationDetail/ConversationInfo';
-import ConversationFiles from '../components/ConversationDetail/ConversationFiles';
+import ConversationPlayer from '../components/ConversationDetail/ConversationPlayer';
 import ConversationSegments from '../components/ConversationDetail/ConversationSegments';
 import '../components/ConversationDetail/ConversationDetail.css';
 
@@ -19,6 +19,7 @@ const ConversationDetailPage: React.FC = () => {
       <ConversationHeader
         title={conversation.conversation_name}
         conversationId={conversation.id}
+        fileUrl={conversation.file_url}
       />
 
       <ConversationInfo
@@ -26,12 +27,15 @@ const ConversationDetailPage: React.FC = () => {
         status={conversation.status}
       />
 
-      <ConversationFiles
-        original={conversation.file_url}
-        converted={conversation.converted_file_url}
+      <ConversationPlayer
+        url={conversation.file_url}
+        // converted={conversation.converted_file_url}
       />
 
-      <ConversationSegments segments={conversation.segments || []} />
+      <ConversationSegments 
+        segments={conversation.segments || []}
+        conversation_id={conversation.id}
+       />
     </div>
   );
 };
