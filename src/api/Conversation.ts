@@ -5,6 +5,7 @@ export type SegmentDetail = {
   start_time: number;
   end_time: number;
   speaker: number;
+  participant_id?: string;
   participant_name?: string;
   transcription_id?: string;
   transcription?: string;

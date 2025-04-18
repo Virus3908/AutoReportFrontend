@@ -31,3 +31,28 @@ export async function deleteParticipantByID(id: string): Promise<void> {
     const response = await fetch(`/api/participants/${id}`, { method: 'DELETE' });
     if (!response.ok) throw new Error('Delete failed');
 };
+
+export const connectParticipantToSegment = async (
+    segmentId: string,
+    participantId: string,
+    conversationId: string
+  ) => {
+    const response = await fetch(`/api/segments/${segmentId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        participant_id: participantId,
+        conversation_id: conversationId,
+      }),
+    });
+  
+    if (!response.ok) {
+      throw new Error('Ошибка при подключении участника к сегменту');
+    }
+
+    if (response.status === 204) return;
+  
+    return response.json();
+  };
