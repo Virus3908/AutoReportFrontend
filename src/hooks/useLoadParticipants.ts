@@ -10,7 +10,7 @@ export const useLoadParticipants = () => {
         try {
             setLoading(true);
             const data = await fetchParticipants();
-            setParticipants(data);
+            setParticipants(data ?? []);
             setError(null);
         } catch (err) {
             console.error(err);
