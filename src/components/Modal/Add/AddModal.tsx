@@ -2,7 +2,7 @@ import Modal from 'react-modal';
 import AddConversationForm from './AddConversation/AddConversationForm';
 import AddParticipantForm from './AddParticipant/AddParticipantForm';
 
-import './AddModal.css'
+import '../Modal.css'
 
 type Props = {
     isOpen: boolean;

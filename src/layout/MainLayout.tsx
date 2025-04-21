@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import './MainLayout.css';
-import AddModal from '../components/Modal/AddModal';
+import AddModal from '../components/Modal/Add/AddModal';
 import MenuButton from '../components/MenuButton/MenuButton';
 
 type ModalType = 'conversation' | 'participant' | null;
