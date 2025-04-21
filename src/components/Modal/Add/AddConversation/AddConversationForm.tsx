@@ -1,6 +1,6 @@
 import React from 'react';
-import '../AddModal.css';
-import { useAddConversation } from '../../../hooks/useAddConversation';
+import '../../Modal.css';
+import { useAddConversation } from '../../../../hooks/useAddConversation';
 
 type Props = {
     onSuccess?: () => void;

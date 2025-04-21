@@ -1,5 +1,5 @@
-import { useAddParticipant } from '../../../hooks/useAddParticipant';
-import '../AddModal.css';
+import { useAddParticipant } from '../../../../hooks/useAddParticipant';
+import '../../Modal.css';
 
 type Props = {
     onClose: () => void;
