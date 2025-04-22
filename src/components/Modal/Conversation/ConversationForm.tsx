@@ -1,13 +1,13 @@
 import React from 'react';
-import '../../Modal.css';
-import { useAddConversation } from '../../../../hooks/useAddConversation';
+import '../Modal.css';
+import { useAddConversation } from '../../../hooks/useAddConversation';
 
 type Props = {
     onSuccess?: () => void;
     onClose: () => void;
 };
 
-const AddConversationForm: React.FC<Props> = ({ onSuccess, onClose }) => {
+const ConversationForm: React.FC<Props> = ({ onSuccess, onClose }) => {
     const {
         title,
         setTitle,
@@ -56,4 +56,4 @@ const AddConversationForm: React.FC<Props> = ({ onSuccess, onClose }) => {
     );
 };
 
-export default AddConversationForm;
+export default ConversationForm;

@@ -36,23 +36,44 @@ export const connectParticipantToSegment = async (
     segmentId: string,
     participantId: string,
     conversationId: string
-  ) => {
+) => {
     const response = await fetch(`/api/segments/${segmentId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        participant_id: participantId,
-        conversation_id: conversationId,
-      }),
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            participant_id: participantId,
+            conversation_id: conversationId,
+        }),
     });
-  
+
     if (!response.ok) {
-      throw new Error('Ошибка при подключении участника к сегменту');
+        throw new Error('Ошибка при подключении участника к сегменту');
     }
 
     if (response.status === 204) return;
-  
+
     return response.json();
-  };
+};
+
+export const updateParticipant = async (
+    participantId: string,
+    data: { name: string; email: string }
+) => {
+    const response = await fetch(`/api/participants/${participantId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        throw new Error('Ошибка при редактировании участника');
+    }
+
+    if (response.status === 204) return;
+
+    return response.json();
+}

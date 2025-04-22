@@ -1,19 +1,28 @@
-import { useAddParticipant } from '../../../../hooks/useAddParticipant';
-import '../../Modal.css';
+import { useParticipantForm } from '../../../hooks/useParticipantForm';
+import '../Modal.css';
 
 type Props = {
     onClose: () => void;
     onSuccess?: () => void;
+    initialName?: string;
+    initialEmail?: string;
+    participantId?: string;
 };
 
-const AddParticipantForm: React.FC<Props> = ({ onClose, onSuccess }) => {
+const ParticipantForm: React.FC<Props> = ({
+    onClose,
+    onSuccess,
+    initialName = '',
+    initialEmail = '',
+    participantId
+}) => {
     const {
         name,
         setName,
         email,
         setEmail,
         handleSubmit,
-    } = useAddParticipant(onSuccess, onClose);
+    } = useParticipantForm(onSuccess, onClose, initialName, initialEmail, participantId);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -33,9 +42,11 @@ const AddParticipantForm: React.FC<Props> = ({ onClose, onSuccess }) => {
                 required
                 className="text-input"
             />
-            <button type="submit" className="modal-button">Создать</button>
+            <button type="submit" className="modal-button">
+                {participantId ? 'Обновить' : 'Создать'}
+            </button>
         </form>
     );
 };
 
-export default AddParticipantForm;
+export default ParticipantForm;
