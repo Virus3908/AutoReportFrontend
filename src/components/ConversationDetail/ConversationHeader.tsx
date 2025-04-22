@@ -7,10 +7,24 @@ type Props = {
   title: string;
   fileUrl: string;
   conversationId: string;
+  status: number; // 👈 добавили статус
 };
 
-const ConversationHeader: React.FC<Props> = ({ title, conversationId, fileUrl }) => {
-  const { isEditing, setIsEditing, newTitle, setNewTitle, handleSave, handleCancel, loading } = useEditConversationName(conversationId, title);
+const ConversationHeader: React.FC<Props> = ({
+  title,
+  conversationId,
+  fileUrl,
+  status
+}) => {
+  const {
+    isEditing,
+    setIsEditing,
+    newTitle,
+    setNewTitle,
+    handleSave,
+    handleCancel,
+    loading
+  } = useEditConversationName(conversationId, title);
 
   return (
     <div className="conversation-header">
@@ -39,7 +53,10 @@ const ConversationHeader: React.FC<Props> = ({ title, conversationId, fileUrl })
 
       <div className="conversation-actions">
         <DownloadButton url={fileUrl} />
-        <TranscriptionButton conversationId={conversationId} />
+        <TranscriptionButton
+          conversationId={conversationId}
+          disabled={status !== 0} // 👈 блокировка по статусу
+        />
       </div>
     </div>
   );

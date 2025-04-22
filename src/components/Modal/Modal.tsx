@@ -4,16 +4,26 @@ import ParticipantForm from './Participant/ParticipantForm';
 
 import './Modal.css'
 import { Participant } from '../../api/Participant';
+import PromptForm from './Prompt/PromptForm';
+import { Prompt } from '../../api/Prompt';
 
 type Props = {
     isOpen: boolean;
     onClose: () => void;
     onSuccess?: () => void;
-    type: 'conversationCreate' | 'participantCreate' | 'participantEdit';
+    type: 'conversationCreate' | 'participantCreate' | 'participantEdit' | 'promptEdit' | 'promptCreate';
     participant?: Participant
+    prompt?: Prompt
 };
 
-const AddEntityModal: React.FC<Props> = ({ isOpen, onClose, onSuccess, type, participant }) => {
+const AddEntityModal: React.FC<Props> = ({
+    isOpen,
+    onClose,
+    onSuccess,
+    type,
+    participant,
+    prompt
+}) => {
     const getTitle = () => {
         switch (type) {
             case 'conversationCreate':
@@ -22,6 +32,10 @@ const AddEntityModal: React.FC<Props> = ({ isOpen, onClose, onSuccess, type, par
                 return 'Новый пользователь';
             case 'participantEdit':
                 return 'Редактирование пользователя';
+            case 'promptEdit':
+                return 'Редактирование промпта';
+            case 'promptCreate':
+                return 'Создание промпта';
             default:
                 return 'Создание';
         }
@@ -32,17 +46,33 @@ const AddEntityModal: React.FC<Props> = ({ isOpen, onClose, onSuccess, type, par
             case 'conversationCreate':
                 return <ConversationForm onClose={onClose} onSuccess={onSuccess} />;
             case 'participantCreate':
-                return <ParticipantForm onClose={onClose} onSuccess={onSuccess} />;
+                return <ParticipantForm
+                    onClose={onClose}
+                    onSuccess={onSuccess}
+                    type={type}
+                />;
             case 'participantEdit':
                 return participant ? (
                     <ParticipantForm
                         onClose={onClose}
                         onSuccess={onSuccess}
-                        initialName={participant.name}
-                        initialEmail={participant.email}
-                        participantId={participant.id}
+                        type={type}
+                        participant={participant}
                     />
                 ) : null;
+            case 'promptEdit':
+                return prompt ? (<PromptForm
+                    type={type}
+                    onClose={onClose}
+                    onSuccess={onSuccess}
+                    initialData={prompt}
+                />) : null;
+            case 'promptCreate':
+                return <PromptForm
+                    type={type}
+                    onClose={onClose}
+                    onSuccess={onSuccess}
+                />;
             default:
                 return null;
         }

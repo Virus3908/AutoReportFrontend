@@ -20,6 +20,7 @@ const ConversationDetailPage: React.FC = () => {
         title={conversation.conversation_name}
         conversationId={conversation.id}
         fileUrl={conversation.file_url}
+        status={conversation.status}
       />
 
       <ConversationInfo

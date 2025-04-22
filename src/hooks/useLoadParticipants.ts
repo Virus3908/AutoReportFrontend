@@ -6,7 +6,7 @@ export const useLoadParticipants = () => {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const loadConversations = async () => {
+    const loadParticipant = async () => {
         try {
             setLoading(true);
             const data = await fetchParticipants();
@@ -21,20 +21,15 @@ export const useLoadParticipants = () => {
     }
 
     useEffect(() => {
-        loadConversations();
+        loadParticipant();
 
-        const handler = () => {
-            console.log("Получено событие обновления участников");
-            loadConversations();
-        };
-
+        const handler = () => loadParticipant();
         window.addEventListener("participantsUpdated", handler);
 
         return () => {
             window.removeEventListener("participantsUpdated", handler);
         };
-    }
-    , []);
+    }, []);
 
     const deleteParticipant = async (id: string) => {
         try {
@@ -44,7 +39,7 @@ export const useLoadParticipants = () => {
             console.error('Ошибка при удалении:', err);
         }
     };
-            
+
 
     return { participants, loading, error, deleteParticipant };
 };

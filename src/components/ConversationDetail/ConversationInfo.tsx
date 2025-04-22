@@ -1,6 +1,6 @@
 type Props = {
     // id: string;
-    status: string;
+    status: number;
   };
   
   const ConversationInfo: React.FC<Props> = ({ status }) => (
