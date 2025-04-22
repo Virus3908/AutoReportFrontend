@@ -5,9 +5,11 @@ import { Participant } from '../../../api/Participant';
 type Props = {
     participants: Participant[];
     onDelete: (id: string) => void;
-};
+    onEdit: (participant: Participant) => void;
+  };
+  
 
-const ParticipantsList: React.FC<Props> = ({ participants, onDelete }) => {
+const ParticipantsList: React.FC<Props> = ({ participants, onDelete, onEdit }) => {
     if (!participants || participants.length === 0) {
         return <p>Участников пока нет.</p>;
     }
@@ -18,6 +20,7 @@ const ParticipantsList: React.FC<Props> = ({ participants, onDelete }) => {
                 <div
                     key={part.id}
                     className="lists-item"
+                    onClick={() => onEdit(part)}
                 >
                     <div className="lists-text">
                         <span className="lists-title">{part.name}</span>

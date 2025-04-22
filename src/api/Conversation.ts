@@ -55,3 +55,13 @@ export async function deleteConversationByID(id: string): Promise<void> {
 export const updateTranscription = async (transcriptionId: string, text: string): Promise<void> => {
   await axios.patch(`/api/transcription/update/${transcriptionId}`, { transcription: text });
 };
+
+export const updateConversationName = async (conversationId: string, name: string): Promise<void> => {
+  try {
+    await axios.patch(`/api/conversations/${conversationId}`, {
+      conversation_name: name,
+    });
+  } catch (err) {
+    throw new Error('Ошибка при обновлении названия совещания');
+  }
+}
