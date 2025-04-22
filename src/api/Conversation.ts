@@ -15,7 +15,7 @@ export type Conversation = {
   id: string;
   conversation_name: string;
   file_url: string;
-  status: string;
+  status: number;
   created_at: string;
   updated_at: string;
   converted_file_url?: string;

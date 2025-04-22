@@ -1,20 +1,19 @@
+import { Participant } from '../../../api/Participant';
 import { useParticipantForm } from '../../../hooks/useParticipantForm';
 import '../Modal.css';
 
 type Props = {
     onClose: () => void;
     onSuccess?: () => void;
-    initialName?: string;
-    initialEmail?: string;
-    participantId?: string;
+    type: 'participantEdit' | 'participantCreate';
+    participant?: Participant;
 };
 
 const ParticipantForm: React.FC<Props> = ({
     onClose,
     onSuccess,
-    initialName = '',
-    initialEmail = '',
-    participantId
+    type,
+    participant,
 }) => {
     const {
         name,
@@ -22,7 +21,7 @@ const ParticipantForm: React.FC<Props> = ({
         email,
         setEmail,
         handleSubmit,
-    } = useParticipantForm(onSuccess, onClose, initialName, initialEmail, participantId);
+    } = useParticipantForm(type, onSuccess, onClose, participant);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -43,7 +42,7 @@ const ParticipantForm: React.FC<Props> = ({
                 className="text-input"
             />
             <button type="submit" className="modal-button">
-                {participantId ? 'Обновить' : 'Создать'}
+                {participant ? 'Обновить' : 'Создать'}
             </button>
         </form>
     );

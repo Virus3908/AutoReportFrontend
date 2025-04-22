@@ -4,9 +4,10 @@ import './ConversationDetail.css';
 
 type Props = {
   conversationId: string;
+  disabled?: boolean;
 };
 
-const TranscriptionButton: React.FC<Props> = ({ conversationId }) => {
+const TranscriptionButton: React.FC<Props> = ({ conversationId, disabled }) => {
   const { convert, loading, error, success } = useTranscriptionTask();
 
   const handleClick = () => {
@@ -18,7 +19,7 @@ const TranscriptionButton: React.FC<Props> = ({ conversationId }) => {
       <button
         className="btn"
         onClick={handleClick}
-        disabled={loading}
+        disabled={disabled || loading}
       >
         {loading ? 'Создание транскрипции...' : 'Создать транскрипцию'}
       </button>
