@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useParams } from 'react-router-dom';
 import { useConversationDetail } from '../hooks/useConversationDetail';
 import ConversationHeader from '../components/ConversationDetail/ConversationHeader';
@@ -9,6 +10,7 @@ import '../components/ConversationDetail/ConversationDetail.css';
 const ConversationDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { conversation, error, loading } = useConversationDetail(id);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>{error}</div>;
@@ -30,12 +32,14 @@ const ConversationDetailPage: React.FC = () => {
 
       <ConversationPlayer
         url={conversation.file_url}
+        ref={videoRef}
         // converted={conversation.converted_file_url}
       />
 
       <ConversationSegments 
         segments={conversation.segments || []}
         conversation_id={conversation.id}
+        videoRef={videoRef}
        />
     </div>
   );

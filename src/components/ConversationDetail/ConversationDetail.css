@@ -104,6 +104,11 @@
   padding: 12px;
   border-radius: 6px;
   border: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.segment-row.active {
+  background-color: #d1e7fd;
 }
 
 .segment-meta {
