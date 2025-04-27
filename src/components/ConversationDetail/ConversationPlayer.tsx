@@ -1,13 +1,15 @@
+import { forwardRef } from "react";
+
 type Props = {
   url: string;
 };
 
-const ConversationPlayer: React.FC<Props> = ({ url }) => {
+const ConversationPlayer = forwardRef<HTMLVideoElement, Props>(({ url }, ref) => {
   const isVideo = url.match(/\.(mp4|webm|ogg)$/i);
   if (isVideo) {
     return (
       <div className="media-player">
-        <video controls>
+        <video ref={ref} controls>
           <source src={url} />
           Ваш браузер не поддерживает видео.
         </video>
@@ -15,6 +17,6 @@ const ConversationPlayer: React.FC<Props> = ({ url }) => {
     );
   }
   return null;
-};
+});
 
 export default ConversationPlayer;
