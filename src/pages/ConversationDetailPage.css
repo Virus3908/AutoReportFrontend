@@ -1,0 +1,35 @@
+.conversation-detail {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.conversation-detail-header {
+    padding-bottom: 20px;
+}
+
+.conversation-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+    .conversation-layout {
+        flex-direction: row;
+        height: calc(100vh - 100px);
+    }
+
+    .player-fixed {
+        width: 40%;
+        flex-shrink: 0;
+        padding-right: 1rem;
+        position: sticky;
+        top: 0;
+        height: fit-content;
+        align-self: flex-start;
+    }
+
+    .result-scrollable {
+        width: 60%;
+        overflow-y: auto;
+    }
+}
