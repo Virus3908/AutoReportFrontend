@@ -4,8 +4,8 @@ import { useConversationDetail } from '../hooks/useConversationDetail';
 import ConversationHeader from '../components/ConversationDetail/ConversationHeader';
 import ConversationInfo from '../components/ConversationDetail/ConversationInfo';
 import ConversationPlayer from '../components/ConversationDetail/ConversationPlayer';
-import ConversationSegments from '../components/ConversationDetail/ConversationSegments';
-import '../components/ConversationDetail/ConversationDetail.css';
+import './ConversationDetailPage.css';
+import ConversationResult from "../components/ConversationDetail/ConversationResult/ConversationResult";
 
 const ConversationDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,29 +18,35 @@ const ConversationDetailPage: React.FC = () => {
 
   return (
     <div className="conversation-detail">
-      <ConversationHeader
-        title={conversation.conversation_name}
-        conversationId={conversation.id}
-        fileUrl={conversation.file_url}
-        status={conversation.status}
-      />
+      <div className="conversation-detail-header">
+        <ConversationHeader
+          title={conversation.conversation_name}
+          conversationId={conversation.id}
+          fileUrl={conversation.file_url}
+          status={conversation.status}
+        />
+        <ConversationInfo
+          // id={conversation.id}
+          status={conversation.status}
+        />
+      </div>
 
-      <ConversationInfo
-        // id={conversation.id}
-        status={conversation.status}
-      />
+      <div className="conversation-layout">
+        <div className="player-fixed">
+          <ConversationPlayer
+            url={conversation.file_url}
+            ref={videoRef}
+          />
+        </div>
 
-      <ConversationPlayer
-        url={conversation.file_url}
-        ref={videoRef}
-        // converted={conversation.converted_file_url}
-      />
-
-      <ConversationSegments 
-        segments={conversation.segments || []}
-        conversation_id={conversation.id}
-        videoRef={videoRef}
-       />
+        <div className="result-scrollable">
+          <ConversationResult
+            segments={conversation.segments || []}
+            conversation_id={conversation.id}
+            videoRef={videoRef}
+          />
+        </div>
+      </div>
     </div>
   );
 };
