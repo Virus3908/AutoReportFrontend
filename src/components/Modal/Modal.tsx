@@ -11,7 +11,7 @@ type Props = {
     isOpen: boolean;
     onClose: () => void;
     onSuccess?: () => void;
-    type: 'conversationCreate' | 'participantCreate' | 'participantEdit' | 'promptEdit' | 'promptCreate';
+    type: 'conversationCreate' | 'participantCreate' | 'participantEdit' | 'promptEdit' | 'promptCreate' | 'createSemiReport';
     participant?: Participant
     prompt?: Prompt
 };
@@ -36,6 +36,8 @@ const AddEntityModal: React.FC<Props> = ({
                 return 'Редактирование промпта';
             case 'promptCreate':
                 return 'Создание промпта';
+            case 'createSemiReport':
+                return 'Подведение итогов';
             default:
                 return 'Создание';
         }
@@ -73,6 +75,8 @@ const AddEntityModal: React.FC<Props> = ({
                     onClose={onClose}
                     onSuccess={onSuccess}
                 />;
+            case 'createSemiReport':
+                
             default:
                 return null;
         }
