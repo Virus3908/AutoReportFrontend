@@ -6,14 +6,16 @@ import './Modal.css'
 import { Participant } from '../../api/Participant';
 import PromptForm from './Prompt/PromptForm';
 import { Prompt } from '../../api/Prompt';
+import SemiReportForm from './SemiReport/SemiReportForm';
 
 type Props = {
     isOpen: boolean;
     onClose: () => void;
     onSuccess?: () => void;
     type: 'conversationCreate' | 'participantCreate' | 'participantEdit' | 'promptEdit' | 'promptCreate' | 'createSemiReport';
-    participant?: Participant
-    prompt?: Prompt
+    participant?: Participant;
+    prompt?: Prompt;
+    conversationId?: string;
 };
 
 const AddEntityModal: React.FC<Props> = ({
@@ -22,7 +24,8 @@ const AddEntityModal: React.FC<Props> = ({
     onSuccess,
     type,
     participant,
-    prompt
+    prompt,
+    conversationId,
 }) => {
     const getTitle = () => {
         switch (type) {
@@ -76,7 +79,11 @@ const AddEntityModal: React.FC<Props> = ({
                     onSuccess={onSuccess}
                 />;
             case 'createSemiReport':
-                
+                return conversationId ? (<SemiReportForm
+                    conversationId={conversationId}
+                    onClose={onClose}
+                    onSuccess={onSuccess}
+                />) : null;
             default:
                 return null;
         }

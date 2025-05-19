@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { createSemiReportTask } from '../api/Task';
 
 export const useSemiReportForm = (
+  conversationId: string,
   onSuccess?: () => void,
   onClose?: () => void
 ) => {
-  const [conversationId, setConversationId] = useState('');
   const [promptName, setPromptName] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,8 +24,6 @@ export const useSemiReportForm = (
   };
 
   return {
-    conversationId,
-    setConversationId,
     promptName,
     setPromptName,
     handleSubmit
