@@ -44,6 +44,7 @@ const ConversationDetailPage: React.FC = () => {
             segments={conversation.segments || []}
             conversation_id={conversation.id}
             videoRef={videoRef}
+            semi_report={conversation.semi_report}
           />
         </div>
       </div>
