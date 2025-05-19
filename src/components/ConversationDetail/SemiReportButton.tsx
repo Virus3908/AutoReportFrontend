@@ -1,33 +1,39 @@
-import React from 'react';
-import { useTranscriptionTask } from '../../hooks/useTranscriptionTask';
+import React, { useState } from 'react';
+import AddEntityModal from '../Modal/Modal';
 import './ConversationDetail.css';
 
 type Props = {
-  conversationId: string;
-  disabled?: boolean;
+    conversationId: string;
+    disabled?: boolean;
 };
 
-const TranscriptionButton: React.FC<Props> = ({ conversationId, disabled }) => {
-  const { convert, loading, error, success } = useTranscriptionTask();
+const SemiReportButton: React.FC<Props> = ({ conversationId, disabled }) => {
+    const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    convert(conversationId);
-  };
+    return (
+        <div>
+            <button
+                className="btn"
+                onClick={() => setOpen(true)}
+                disabled={disabled}
+            >
+                Создать итоговый отчёт
+            </button>
 
-  return (
-    <div>
-      <button
-        className="btn"
-        onClick={handleClick}
-        disabled={disabled || loading}
-      >
-        {loading ? 'Создание транскрипции...' : 'Создать транскрипцию'}
-      </button>
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>Задача успешно создана!</p>}
-    </div>
-  );
+            {open && (
+                <AddEntityModal
+                    type="createSemiReport"
+                    isOpen={true}
+                    onClose={() => setOpen(false)}
+                    onSuccess={() => {
+                        window.dispatchEvent(new Event('semiReportCreated'));
+                        setOpen(false);
+                    }}
+                    conversationId={conversationId}
+                />
+            )}
+        </div>
+    );
 };
 
-export default TranscriptionButton;
+export default SemiReportButton;
