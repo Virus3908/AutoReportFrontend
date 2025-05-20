@@ -21,6 +21,7 @@ export type Conversation = {
   converted_file_url?: string;
   segments?: SegmentDetail[];
   semi_report?: string;
+  report?: string;
 };
 
 export const fetchConversations = async (): Promise<Conversation[]> => {

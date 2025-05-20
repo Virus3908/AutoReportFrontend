@@ -13,6 +13,10 @@ export const createSemiReportTask = async (conversationId: string, prompt: Promp
   await axios.post(`/api/task/create/semireport/${conversationId}`, prompt);
 }
 
+export const createReportTask = async (conversationId: string, prompt: Prompt): Promise<void> => {
+  await axios.post(`/api/task/create/report/${conversationId}`, prompt);
+}
+
 // export const createDiarizeTask = async (conversationId: string): Promise<void> => {
 //   await axios.post(`/api/task/create/diarize/${conversationId}`);
 // };

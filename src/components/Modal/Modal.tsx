@@ -6,13 +6,13 @@ import './Modal.css'
 import { Participant } from '../../api/Participant';
 import PromptForm from './Prompt/PromptForm';
 import { Prompt } from '../../api/Prompt';
-import SemiReportForm from './SemiReport/SemiReportForm';
+import SemiReportForm from './Report/ReportForm';
 
 type Props = {
     isOpen: boolean;
     onClose: () => void;
     onSuccess?: () => void;
-    type: 'conversationCreate' | 'participantCreate' | 'participantEdit' | 'promptEdit' | 'promptCreate' | 'createSemiReport';
+    type: 'conversationCreate' | 'participantCreate' | 'participantEdit' | 'promptEdit' | 'promptCreate' | 'createSemiReport' | 'createReport';
     participant?: Participant;
     prompt?: Prompt;
     conversationId?: string;
@@ -41,6 +41,8 @@ const AddEntityModal: React.FC<Props> = ({
                 return 'Создание промпта';
             case 'createSemiReport':
                 return 'Подведение итогов';
+            case 'createReport':
+                return 'Создание отчёта';
             default:
                 return 'Создание';
         }
@@ -83,6 +85,14 @@ const AddEntityModal: React.FC<Props> = ({
                     conversationId={conversationId}
                     onClose={onClose}
                     onSuccess={onSuccess}
+                    reportType='semi'
+                />) : null;
+            case 'createReport':
+                return conversationId ? (<SemiReportForm
+                    conversationId={conversationId}
+                    onClose={onClose}
+                    onSuccess={onSuccess}
+                    reportType='full'
                 />) : null;
             default:
                 return null;

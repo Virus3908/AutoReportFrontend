@@ -1,4 +1,4 @@
-import { useSemiReportForm } from '../../../hooks/useSemiReportForm';
+import { useReportForm } from '../../../hooks/useReportForm';
 import { useLoadPrompts } from '../../../hooks/useLoadPrompts';
 import '../Modal.css';
 
@@ -6,14 +6,15 @@ type Props = {
   conversationId: string;
   onClose: () => void;
   onSuccess?: () => void;
+  reportType: 'semi' | 'full';
 };
 
-const SemiReportForm: React.FC<Props> = ({ conversationId, onClose, onSuccess }) => {
+const ReportForm: React.FC<Props> = ({ conversationId, onClose, onSuccess, reportType }) => {
   const {
     promptName,
     setPromptName,
     handleSubmit
-  } = useSemiReportForm(conversationId, onSuccess, onClose);
+  } = useReportForm(conversationId, reportType, onSuccess, onClose);
 
   const { prompts, loading, error } = useLoadPrompts();
 
@@ -54,4 +55,4 @@ const SemiReportForm: React.FC<Props> = ({ conversationId, onClose, onSuccess })
   );
 };
 
-export default SemiReportForm;
+export default ReportForm;

@@ -1,7 +1,7 @@
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from 'react';
 import { useUpdateTranscription } from '../../../../hooks/useUpdateTranscription';
-import '../ConversationResult.css';
+import './Segments.css';
 
 type Props = {
   text?: string;

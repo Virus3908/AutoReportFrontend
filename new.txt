@@ -1,0 +1,88 @@
+
+Conversations {
+	id integer pk increments unique
+	conversation_name varchar(255)
+	file_url varchar(255)
+	status integer def(False)
+	created_at timestamp
+	updated_at timestamp
+}
+
+Convert {
+	id integer pk increments unique
+	conversations_id integer > Conversations.id
+	file_url varchar def(255)
+	task_id integer > tasks.id
+	created_at timestamp
+	updated_at timestamp
+}
+
+Diarize {
+	id integer pk increments unique
+	Convert_ID integer > Convert.id
+	task_id integer > tasks.id
+	created_at timestamp
+	updated_at timestamp
+}
+
+Transcribe {
+	id integer pk increments unique
+	segment_id integer > Segments.id
+	transcription varchar
+	task_id integer > tasks.id
+	created_at timestamp
+	updated_at timestamp
+}
+
+Report {
+	id integer pk increments unique
+	summarize_id integer > Summarize.id
+	report varchar
+	promt_id integer > Promts.id
+	task_id integer > tasks.id
+	created_at timestamp
+	updated_at timestamp
+}
+
+Promts {
+	id integer pk increments unique
+	prompt_type integer
+	promt varchar
+	created_at timestamp
+	updated_at timestamp
+}
+
+Segments {
+	id integer pk increments unique
+	diarize_id integer > Diarize.id
+	start_time float
+	end_time float
+	participant_conversations_id integer > Participant.id
+	created_at timestamp
+	updated_at timestamp
+}
+
+tasks {
+	id integer pk increments unique
+	status integer
+	task_type integer
+	created_at timestamp
+	updated_at timestamp
+}
+
+Summarize {
+	id integer pk increments unique
+	Conversation_id integer > Conversations.id
+	task_id integer > tasks.id
+	summarize text
+	prompt_id integer > Promts.id
+	created_at timestamp
+	updated_at timestamp
+}
+
+Participant {
+	id integer pk increments unique
+	conversation_id integer > Conversations.id
+	user_id integer
+}
+
