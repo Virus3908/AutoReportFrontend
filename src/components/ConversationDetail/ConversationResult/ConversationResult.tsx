@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ConversationSegments from "./Segments/ConversationSegments";
-import SemiReport from "./SemiReport/SemiReport";
+import SemiReport from "./Report/Report";
 import "./ConversationResult.css";
 
 type Segment = {
@@ -19,9 +19,10 @@ type Props = {
     conversation_id: string;
     videoRef: React.RefObject<HTMLVideoElement | null>;
     semi_report?: string;
+    report?: string;
 };
 
-const ConversationResult: React.FC<Props> = ({ segments, conversation_id, videoRef, semi_report }) => {
+const ConversationResult: React.FC<Props> = ({ segments, conversation_id, videoRef, semi_report, report }) => {
     const [activeTab, setActiveTab] = useState<"transcription" | "semireport" | "report">("transcription");
 
     return (
@@ -56,11 +57,17 @@ const ConversationResult: React.FC<Props> = ({ segments, conversation_id, videoR
                     />
                 )}
                 {activeTab === "semireport" && (
-                    <SemiReport semi_report={semi_report} />
+                    <SemiReport 
+                    report={semi_report} 
+                    type="semireport" 
+                    />
                 )}
-                {/* {activeTab === "report" && (
-          <ReportView conversation_id={conversation_id} />
-        )} */}
+                {activeTab === "report" && (
+                    <SemiReport 
+                    report={report} 
+                    type="report" 
+                    />
+                )}
             </div>
         </div>
     );

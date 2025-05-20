@@ -4,11 +4,16 @@ import './ConversationDetail.css';
 
 type Props = {
     conversationId: string;
+    reportType: 'semi' | 'full';
     disabled?: boolean;
-};
+  };
 
-const SemiReportButton: React.FC<Props> = ({ conversationId, disabled }) => {
+const ReportButton: React.FC<Props> = ({ conversationId, disabled, reportType }) => {
     const [open, setOpen] = useState(false);
+
+    const modalType = reportType === 'semi' ? "createSemiReport" : "createReport";
+    const buttonText = reportType === 'semi' ? 'Создать итоги' : 'Создать отчёт';
+    const updateEvent = reportType === 'semi' ? 'semiReportCreated' : 'reportCreated';
 
     return (
         <div>
@@ -17,16 +22,16 @@ const SemiReportButton: React.FC<Props> = ({ conversationId, disabled }) => {
                 onClick={() => setOpen(true)}
                 disabled={disabled}
             >
-                Создать итоговый отчёт
+                {buttonText}
             </button>
 
             {open && (
                 <AddEntityModal
-                    type="createSemiReport"
+                    type={modalType}
                     isOpen={true}
                     onClose={() => setOpen(false)}
                     onSuccess={() => {
-                        window.dispatchEvent(new Event('semiReportCreated'));
+                        window.dispatchEvent(new Event(updateEvent));
                         setOpen(false);
                     }}
                     conversationId={conversationId}
@@ -36,4 +41,4 @@ const SemiReportButton: React.FC<Props> = ({ conversationId, disabled }) => {
     );
 };
 
-export default SemiReportButton;
+export default ReportButton;

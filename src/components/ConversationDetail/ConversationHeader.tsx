@@ -2,7 +2,7 @@ import TranscriptionButton from './TranscriptionButton';
 import DownloadButton from './DownloadButton';
 import './ConversationDetail.css';
 import { useEditConversationName } from '../../hooks/useEditConversationName';
-import SemiReportButton from './SemiReportButton';
+import ReportButton from './ReportButton';
 
 type Props = {
   title: string;
@@ -52,15 +52,21 @@ const ConversationHeader: React.FC<Props> = ({
         </h2>
       )}
 
-      <div className="conversation-actions">
+      <div className="conversation-header">
         <DownloadButton url={fileUrl} />
         <TranscriptionButton
           conversationId={conversationId}
           disabled={status !== 0}
         />
-        <SemiReportButton
+        <ReportButton
           conversationId={conversationId}
           disabled={status !== 3}
+          reportType='semi'
+        />
+        <ReportButton
+          conversationId={conversationId}
+          disabled={status < 3}
+          reportType='full'
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLoadParticipants } from '../../../../hooks/useLoadParticipants';
-import '../ConversationResult.css';
+import './Segments.css';
 import { useConnectParticipant } from '../../../../hooks/useConnectParticipant';
 
 type Props = {

@@ -4,7 +4,7 @@ import { useConversationDetail } from '../hooks/useConversationDetail';
 import ConversationHeader from '../components/ConversationDetail/ConversationHeader';
 import ConversationInfo from '../components/ConversationDetail/ConversationInfo';
 import ConversationPlayer from '../components/ConversationDetail/ConversationPlayer';
-import './ConversationDetailPage.css';
+import './Pages.css';
 import ConversationResult from "../components/ConversationDetail/ConversationResult/ConversationResult";
 
 const ConversationDetailPage: React.FC = () => {
@@ -45,6 +45,7 @@ const ConversationDetailPage: React.FC = () => {
             conversation_id={conversation.id}
             videoRef={videoRef}
             semi_report={conversation.semi_report}
+            report={conversation.report}
           />
         </div>
       </div>

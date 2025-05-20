@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { createSemiReportTask } from '../api/Task';
+import { createSemiReportTask, createReportTask } from '../api/Task';
 
-export const useSemiReportForm = (
+export const useReportForm = (
   conversationId: string,
+  reportType: 'semi' | 'full',
   onSuccess?: () => void,
   onClose?: () => void
 ) => {
@@ -11,10 +12,17 @@ export const useSemiReportForm = (
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createSemiReportTask(conversationId, {
-        prompt_name: promptName,
-        prompt: ''
-      });
+      if (reportType === 'semi') {
+        await createSemiReportTask(conversationId, {
+          prompt_name: promptName,
+          prompt: ''
+        });
+      } else if (reportType === 'full') {
+        await createReportTask(conversationId, {
+          prompt_name: promptName,
+          prompt: ''
+        });
+      }
 
       if (onSuccess) onSuccess();
       if (onClose) onClose();
