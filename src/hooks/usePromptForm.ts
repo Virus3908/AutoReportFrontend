@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createPrompt, updatePrompt, Prompt } from "../api/Prompt";
-import { useNavigate } from "react-router-dom";
 
 // type Props = {
 //     onSuccess?: () => void,
@@ -17,7 +16,6 @@ export const usePromptForm = (
 ) => {
     const [name, setName] = useState(initialData?.prompt_name || "");
     const [prompt, setPrompt] = useState(initialData?.prompt || "");
-    const navigate = useNavigate();
 
     // useEffect(() => {
     //     if (type === "promptEdit" && initialData) {
@@ -47,7 +45,6 @@ export const usePromptForm = (
             setPrompt("");
             onSuccess?.();
             onClose?.();
-            navigate("/prompts");
 
         } catch (error) {
             console.error("Error while submitting prompt form:", error);
