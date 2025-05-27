@@ -10,8 +10,13 @@ export const useLoadConversations = () => {
     try {
       setLoading(true);
       const data = await fetchConversations();
-      setConversations(data);
-      setError(null);
+      if (Array.isArray(data)) {
+        setConversations(data);
+        setError(null);
+      } else {
+        console.error("Ожидался массив, но пришло:", data);
+        setConversations([]);
+      }
     } catch (err) {
       console.error(err);
       setError("Ошибка загрузки совещаний");

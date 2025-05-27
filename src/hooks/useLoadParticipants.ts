@@ -10,8 +10,13 @@ export const useLoadParticipants = () => {
         try {
             setLoading(true);
             const data = await fetchParticipants();
-            setParticipants(data ?? []);
-            setError(null);
+            if (Array.isArray(data)) {
+                setParticipants(data);
+                setError(null);
+              } else {
+                console.error("Ожидался массив, но пришло:", data);
+                setParticipants([]);
+              }
         } catch (err) {
             console.error(err);
             setError("Ошибка загрузки участников");

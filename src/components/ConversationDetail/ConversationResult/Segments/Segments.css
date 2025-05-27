@@ -90,3 +90,9 @@
     border-color: #4caf50;
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
+
+.segment-transcription {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }

@@ -27,7 +27,6 @@ const SegmentTranscript: React.FC<Props> = ({ text = '', id }) => {
         onChange={(e) => setValue(e.target.value)}
         onBlur={handleBlur}
         minRows={1}
-        maxRows={10}
       />
       {/* {loading && <p className="save-status">Сохраняем...</p>}
       {success && <p className="save-status success">✅ Сохранено</p>} */}
