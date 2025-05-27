@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { createParticipant, Participant, updateParticipant } from '../api/Participant';
-import { useNavigate } from 'react-router-dom';
 
 export const useParticipantForm = (
   type: 'participantEdit' | 'participantCreate',
@@ -10,7 +9,6 @@ export const useParticipantForm = (
 ) => {
   const [name, setName] = useState(initialData?.name || '');
   const [email, setEmail] = useState(initialData?.email || '');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +32,6 @@ export const useParticipantForm = (
       setEmail('');
       onSuccess?.();
       onClose?.();
-      navigate('/participants');
     } catch (err) {
       console.error('Ошибка при сохранении пользователя:', err);
       alert('Ошибка при сохранении');

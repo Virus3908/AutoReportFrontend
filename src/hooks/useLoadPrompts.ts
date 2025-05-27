@@ -10,8 +10,13 @@ export const useLoadPrompts = () => {
         try {
             setLoading(true);
             const data = await fetchPrompts();
-            setPrompts(data);
-            setError(null);
+            if (Array.isArray(data)) {
+                setPrompts(data);
+                setError(null);
+            } else {
+                console.error("Ожидался массив, но пришло:", data);
+                setPrompts([]);
+            }
         } catch (err) {
             console.error(err);
             setError('Ошибка при загрузке');
